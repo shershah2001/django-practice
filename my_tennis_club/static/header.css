@@ -1,0 +1,42 @@
+*,
+*::before,
+*::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+}
+header{
+    background: red;
+}
+.menu-links {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* background: red; */
+    height: 5rem;
+    padding: 0 5rem;
+}
+.header-image img{
+    width:8rem;
+    height:3rem;
+}
+.links{
+    display: flex;
+}
+.menu-links .links .sub-menu {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+.menu-links .links .sub-menu .sub-menu-link {
+    text-decoration: none;
+    color:white;
+}
+.menu-links .links .sub-menu .active{
+    background:black;
+    padding:25px;
+}

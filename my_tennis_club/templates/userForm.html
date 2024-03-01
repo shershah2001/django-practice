@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="feature-area section-gap">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-60 col-lg-8">
+                <div class="title text-center">
+                    <h1 class="mb-10">
+
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+               {% url 'submitform' as url %}
+                <form method="post" action="{{url}}">
+                    {% csrf_token %}
+                    <!-- <div>
+                        <label for="num1">value</label>
+                        <input class="form-control" type="text" name="num1" value="{{num1}}">
+                    </div>
+                    <div>
+                        <label for="num2">value</label>
+                        <input class="form-control" type="text" name="num2"  value="{{num2}}">
+                    </div> -->
+                    {{form}}
+                    <div class="pt-4">
+                        <button type="submit">Save</button>
+                    </div>
+                    <div class="pt-4">
+                       <label for="output">Output</label>
+                       <input class="form-control" type="text" value="{{output}}">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
