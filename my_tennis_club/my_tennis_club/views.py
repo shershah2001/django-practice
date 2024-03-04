@@ -2,8 +2,17 @@ from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render,redirect
 from  .forms import NameForm
+from service.models import Service
 # from .forms import userform
 def home(request):
+      ServiceData = Service.objects.all().order_by('-id')[:3] # order_by use to change the direction of query from ascending to decendign. and object.all to retrive the value from database.
+      # for n in ServiceData:
+      #       print(n.service_icon)
+      data={
+            "response":ServiceData
+      }
+      
+      return render(request,"index.html",data)
 #     data={
 #           "title":"Home Page",
 #           "bdata":"Hello shershah, what are you doing",
@@ -14,7 +23,7 @@ def home(request):
 #                 {"name":"rohit","phoneNumber":9821468154}
 #           ]
 #     }
-    return render(request,"index.html")
+
 def aboutUs(request):
       # if request.method == "GET":
       #    output = request.GET.get("output")

@@ -1,13 +1,33 @@
 {% extends "base.html" %}
 {% block content %}
-<div  class="d-flex  justify-content-around">
-    <img class="w-25" src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?cs=srgb&dl=pexels-binyamin-mellish-186077.jpg&fm=jpg" alt="contact image"
-    draggable="false"
-    >
+<div class="d-flex  justify-content-around mt-5">
+    <img class="w-25"
+        src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?cs=srgb&dl=pexels-binyamin-mellish-186077.jpg&fm=jpg"
+        alt="contact image" draggable="false">
     <div class="w-50">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, quisquam quos cumque animi quam repellendus illum nemo tempora rem quas recusandae impedit quis eos quibusdam fugiat excepturi laudantium culpa ducimus.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, provident! Fugiat quam dolorem repellat quaerat assumenda, illo, sit illum quia hic voluptatem fuga pariatur eos consequuntur cupiditate excepturi rerum aut?</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, provident! Fugiat quam dolorem repellat quaerat assumenda, illo, sit illum quia hic voluptatem fuga pariatur eos consequuntur cupiditate excepturi rerum aut?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita, quisquam quos cumque animi quam
+            repellendus illum nemo tempora rem quas recusandae impedit quis eos quibusdam fugiat excepturi laudantium
+            culpa ducimus.</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, provident! Fugiat quam dolorem repellat
+            quaerat assumenda, illo, sit illum quia hic voluptatem fuga pariatur eos consequuntur cupiditate excepturi
+            rerum aut?</p>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, provident! Fugiat quam dolorem repellat
+            quaerat assumenda, illo, sit illum quia hic voluptatem fuga pariatur eos consequuntur cupiditate excepturi
+            rerum aut?</p>
+            
+    </div>
+
+</div>
+<div class="mt-5">
+    <div class="d-flex justify-content-around" style="padding: 0 3rem;">
+        {% for n in response %}
+        <div class="d-flex justify-content-between w-25 border border-primary mt-3 p-3">
+            <i class="{{n.service_icon}}" aria-hidden="true"></i>
+            <!-- <p style="margin-left:2rem;">{{n.service_des |length| upper }}</p> -->
+            <!-- <p style="margin-left:2rem;">{{n.service_des |slice:"0:20" }}</p> -->
+            <p style="margin-left:2rem;">{{n.service_des}}</p>
+        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}
