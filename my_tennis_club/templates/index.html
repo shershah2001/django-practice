@@ -2,9 +2,9 @@
 {% block content %}
 <div class="d-flex w-100 bg-secondary text-white p-3" style="margin-top:-1rem;">
     <marquee>
-        {% for n in NewsData %}
-        <a class="text-decoration-none text-white" href="/NewsData-us/{{n.id}}">
-            {{n.news_title}}
+        {% for news in NewsData %}
+        <a class="text-decoration-none text-white" href="/NewsData-us/{{news.news_slug}}">
+            {{news.news_title}}
         </a> &nbsp;&nbsp;
         {% endfor %}
     </marquee>

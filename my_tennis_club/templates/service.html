@@ -9,7 +9,8 @@
         <button class="p-1 btn btn-primary" type="submit">submit</button>
     </form>
     <div>
-        {% for service in serviceData %}
+        <!-- {% for service in serviceData %} {% endfor %} i am using for loop on serviceData to iterate whole data but later I am using serviceDatafinal in for loop to create pagination -->
+        {% for service in serviceDatafinal %}
         <div class="d-flex justify-content-center">
             <div class="w-25 border border-primary mt-3 p-3">
                 <div class="d-flex justify-content-between">
@@ -21,5 +22,33 @@
         </div>
         {% endfor %}
     </div>
+    <nav aria-label="Page navigation example" class="mt-4">
+        <ul class="pagination justify-content-center">
+            {% if serviceDatafinal.has_previous %}
+            <li class="page-item ">
+                <a class="page-link" href="/service-us/?page=1">First</a>
+            </li>
+            <li class="page-item ">
+                <a class="page-link" href="/service-us/?page={{serviceDatafinal.previous_page_number}}">Previous</a>
+            </li>
+            {% endif %}
+            {% for n in totalpageNumber  %}
+            <li class="page-item"><a class="page-link" href="/service-us/?page={{n}}">{{n}}</a>
+            </li>
+            {% endfor %}
+            
+
+            {% if serviceDatafinal.has_next %}
+            <li class="page-item">
+                <a class="page-link" href="/service-us/?page={{serviceDatafinal.next_page_number}}">Next</a>
+            </li>
+            <li class="page-item">
+                <a class="page-link" href="/service-us/?page={{lastPage}}">Last</a>
+            </li>
+            {% endif %}
+            
+            
+        </ul>
+    </nav>
 </div>
 {% endblock %}

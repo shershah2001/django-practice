@@ -28,7 +28,7 @@ urlpatterns = [
     path('loginform/',views.login,name="login"),
     path("conection/",views.conection),
     path('calculator-us/',views.calculator,name='calculator'),
-    path('NewsData-us/<newsid>',views.NewsData,name='NewsData') #how to make dynamic url and dynamic data with use of for loop
+    path('NewsData-us/<slug>',views.NewsData,name='NewsData') #how to make dynamic url and dynamic data with use of for loop
     # path('contact-us/<courseid>',views.contactUs),
 
 ]

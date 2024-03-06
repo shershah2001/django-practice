@@ -4,6 +4,7 @@ from django.shortcuts import render,redirect
 from  .forms import NameForm
 from service.models import Service
 from news.models import News
+from django.core.paginator import Paginator
 # from .forms import userform
 def home(request):
       NewsData = News.objects.all();
@@ -41,12 +42,30 @@ def contactUs(request):
       return render(request,"contact.html")
 def serviceUs(request):
       serviceData = Service.objects.all()
+      paginator = Paginator(serviceData,2)
+      page_number = request.GET.get('page')
+      serviceDatafinal = paginator.get_page(page_number)
+      totalPage = serviceDatafinal.paginator.num_pages
+     
+      
       if request.method=='GET':
-            str = request.GET.get('search')
-            if str != None:
-                  serviceData = Service.objects.filter(service_title__icontains=str)
+            search_query  = request.GET.get('search')
+            if search_query != None:
+                  serviceData = Service.objects.filter(service_title__icontains=search_query)
+                  #how to use #filter method to for making searching functionality and if you use this method 
+                  #__icontainss then you can find any thing in the search functionality by typing #single word;
+                  paginator = Paginator(serviceData,2)
+                  serviceDatafinal = paginator.get_page(page_number)
+      data={
+            # 'serviceData':serviceData, 
+            # firstly in this codes i am using serviceData to get the #search data but now i am #modifying this codes because i want to use search functionality with pagination #that why in this last i am passing serviceData  to  paginator and i am not writing #page_number again in the if condition because search query one time is enough for #this codes.
+            'serviceDatafinal':serviceDatafinal,
+            'lastPage':totalPage,
+            'page_number':page_number,
+            'totalpageNumber':[n+1 for n in range(totalPage)]# i am doing this to get number of #pages for numberical pagination this method is not wrote into the django offical #document
+      }           
                   
-      return render(request,"service.html",{'serviceData':serviceData})
+      return render(request,"service.html",data)
 
 def userForm(request):
       # finalValue = 0
@@ -151,8 +170,8 @@ def calculator(request):
             n='invalid opr'       
       return render(request,'calculator.html',{'n':n,'even_odd':even_odd})    
      
-def NewsData(request,newsid):
-      NewsData = News.objects.get(id=newsid);
+def NewsData(request,slug):
+      NewsData = News.objects.get(news_slug=slug);
       return render(request,'NewsData.html',{'NewsData':NewsData})
                   
                   
