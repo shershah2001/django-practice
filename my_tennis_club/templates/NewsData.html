@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<div>
+  <h1 class="fs-3 fw-bold text-center">{{NewsData.news_title}}</h1>
+</div>
+<div class="w-75 m-auto p-5">
+  {{NewsData.news_desc | safe}}
+</div>
+{% endblock %}

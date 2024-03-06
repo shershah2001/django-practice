@@ -3,13 +3,17 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render,redirect
 from  .forms import NameForm
 from service.models import Service
+from news.models import News
 # from .forms import userform
 def home(request):
+      NewsData = News.objects.all();
+      print(NewsData)
       ServiceData = Service.objects.all().order_by('-id')[:3] # order_by use to change the direction of query from ascending to decendign. and object.all to retrive the value from database.
       # for n in ServiceData:
       #       print(n.service_icon)
       data={
-            "response":ServiceData
+            "response":ServiceData,
+            'NewsData':NewsData
       }
       
       return render(request,"index.html",data)
@@ -36,7 +40,14 @@ def contactUs(request):
       
       return render(request,"contact.html")
 def serviceUs(request):
-      return render(request,"service.html")
+      serviceData = Service.objects.all()
+      if request.method=='GET':
+            str = request.GET.get('search')
+            if str != None:
+                  serviceData = Service.objects.filter(service_title__icontains=str)
+                  
+      return render(request,"service.html",{'serviceData':serviceData})
+
 def userForm(request):
       # finalValue = 0
       # data={}
@@ -140,6 +151,9 @@ def calculator(request):
             n='invalid opr'       
       return render(request,'calculator.html',{'n':n,'even_odd':even_odd})    
      
+def NewsData(request,newsid):
+      NewsData = News.objects.get(id=newsid);
+      return render(request,'NewsData.html',{'NewsData':NewsData})
                   
                   
 # how to pass dynamic links example below start

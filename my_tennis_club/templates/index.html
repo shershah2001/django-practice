@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
+<div class="d-flex w-100 bg-secondary text-white p-3" style="margin-top:-1rem;">
+    <marquee>
+        {% for n in NewsData %}
+        <a class="text-decoration-none text-white" href="/NewsData-us/{{n.id}}">
+            {{n.news_title}}
+        </a> &nbsp;&nbsp;
+        {% endfor %}
+    </marquee>
+</div>
 <div class="d-flex  justify-content-around mt-5">
     <img class="w-25"
         src="https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?cs=srgb&dl=pexels-binyamin-mellish-186077.jpg&fm=jpg"
@@ -14,7 +23,7 @@
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus, provident! Fugiat quam dolorem repellat
             quaerat assumenda, illo, sit illum quia hic voluptatem fuga pariatur eos consequuntur cupiditate excepturi
             rerum aut?</p>
-            
+
     </div>
 
 </div>

@@ -1,7 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
 <div>
-    <img src="https://img.freepik.com/premium-photo/male-hands-typing-computer-keyboard-service-concept_220873-10436.jpg"
-        alt="index image" draggable="false">
+    <!-- <img src="https://img.freepik.com/premium-photo/male-hands-typing-computer-keyboard-service-concept_220873-10436.jpg"
+        alt="index image" draggable="false"> -->
+    <form method="get" class="d-flex justify-content-center">
+        <!-- <label for="search">Search...</label> -->
+        <input type="search" id="search" name="search" placeholder="search..." class="p-1">
+        <button class="p-1 btn btn-primary" type="submit">submit</button>
+    </form>
+    <div>
+        {% for service in serviceData %}
+        <div class="d-flex justify-content-center">
+            <div class="w-25 border border-primary mt-3 p-3">
+                <div class="d-flex justify-content-between">
+                    <i class="{{service.service_icon}} mt-2" aria-hidden="true"></i>
+                    <h3>{{service.service_title}}</h3>
+                </div>
+                <p style="margin-left:2rem;">{{service.service_des}}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
