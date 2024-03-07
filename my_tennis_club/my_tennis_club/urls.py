@@ -16,6 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings#
+#this two import this two this above  writing 'settings' and below 'static' and 
+#you have to give link in setting two for media.
+from django.conf.urls.static import static#
 from my_tennis_club import views
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,7 +32,10 @@ urlpatterns = [
     path('loginform/',views.login,name="login"),
     path("conection/",views.conection),
     path('calculator-us/',views.calculator,name='calculator'),
-    path('NewsData-us/<slug>',views.NewsData,name='NewsData') #how to make dynamic url and dynamic data with use of for loop
+    path('NewsData-us/<slug>',views.NewsData,name='NewsData') #how to make dynamic url through slug  and dynamic data with use of for loop
     # path('contact-us/<courseid>',views.contactUs),
-
 ]
+
+if settings.DEBUG:
+    urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+    # i have to give url like above to set media in the url.py 

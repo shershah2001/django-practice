@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'service',
     'tinymce',
-    'news'
+    'news',
+    'contact'
     
 ]
 
@@ -58,7 +59,7 @@ ROOT_URLCONF = 'my_tennis_club.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR,"templates"],
+        'DIRS': [BASE_DIR,"templates"],# Note i have this single BASE_DIR,"templates" so that i #can use my html files the django 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,7 +81,7 @@ WSGI_APPLICATION = 'my_tennis_club.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',#Note i have to write 'BASE_DIR /'. IN THE NAME SO THAT MY #DJANGO APP WILL CONTACT TO THE DATABASE
     }
 }
 
@@ -119,13 +120,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
+# Note i have to write STATIC_URL = 'static/' so that my static files like css file javascript files will connect to the django
 STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-STATICFILES_DIRS = [
+STATICFILES_DIRS = [ # Note i have to write this line also to give directory. too
     BASE_DIR / "static",
     # "/var/www/static/",
 ]
+# Note i am to write this below lines to add media to the setting so that i can upload images in the #database from the admin
+MEDIA_ROOT =BASE_DIR /'media'
+MEDIA_URL ='/media/'

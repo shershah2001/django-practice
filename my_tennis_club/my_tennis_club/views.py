@@ -5,6 +5,8 @@ from  .forms import NameForm
 from service.models import Service
 from news.models import News
 from django.core.paginator import Paginator
+from contact.models import Contact
+
 # from .forms import userform
 def home(request):
       NewsData = News.objects.all();
@@ -38,8 +40,20 @@ def aboutUs(request):
             return render(request,'about.html',{"output":output})
 
 def contactUs(request):
-      
+      if request.method=="POST":
+            username=request.POST.get('username')
+            email=request.POST.get('email')
+            password=request.POST.get('password')
+            address=request.POST.get('address')
+            address_2=request.POST.get('address_2')
+            city=request.POST.get('city')
+            state=request.POST.get('state')
+            zip_num=request.POST.get('zip')
+            comments=request.POST.get('comments')
+            data = Contact(username=username,email=email,password=password,address=address,address2=address_2,city=city,state=state,zip_num=zip_num,comments=comments)
+            data.save()
       return render(request,"contact.html")
+
 def serviceUs(request):
       serviceData = Service.objects.all()
       paginator = Paginator(serviceData,2)
